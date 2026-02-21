@@ -1,0 +1,33 @@
+{
+  "name": "@apiverve/action-content-quality",
+  "version": "0.1.0-beta",
+  "description": "Check content for profanity, analyze sentiment, and measure readability",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build index.js -o dist --license licenses.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apiverve/action-content-quality.git"
+  },
+  "keywords": [
+    "content",
+    "moderation",
+    "sentiment",
+    "readability",
+    "quality"
+  ],
+  "author": "APIVerve <support@apiverve.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apiverve/action-content-quality/issues"
+  },
+  "homepage": "https://github.com/apiverve/action-content-quality#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.1"
+  }
+}
