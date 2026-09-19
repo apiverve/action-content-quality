@@ -1,6 +1,6 @@
 {
   "name": "@apiverve/action-content-quality",
-  "version": "0.1.0-beta",
+  "version": "1.0.0",
   "description": "Check content for profanity, analyze sentiment, and measure readability",
   "main": "dist/index.js",
   "scripts": {

@@ -2,9 +2,7 @@
 
 > Check content for profanity, analyze sentiment, and measure readability
 
-> **Beta Release** - This action is in beta. We'd love your feedback! [Open an issue](https://github.com/apiverve/action-content-quality/issues) if you encounter any problems.
-
-[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Content Quality-blue?logo=github)](https://github.com/marketplace/actions/apiverve-content-quality)
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Content_Quality-blue?logo=github)](https://github.com/apiverve/action-content-quality)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **[Browse All APIs](https://apiverve.com/marketplace?utm_source=github&utm_medium=action&utm_campaign=content-quality)** | **[Get Free API Key](https://dashboard.apiverve.com/signup?utm_source=github&utm_medium=action&utm_campaign=content-quality)** | **[Documentation](https://docs.apiverve.com?utm_source=github&utm_medium=action&utm_campaign=content-quality)**
@@ -24,10 +22,10 @@ This action provides access to APIVerve's Content Quality APIs directly in your 
 
 | API | Description |
 |-----|-------------|
-| `contentfilter` | Content Filter checks URLs against a comprehensive blocklist of 200,000+ domains categorized as ads-malware, fake news, gambling, adult content, or social media. Returns the specific category for blocked domains. |
-| `profanityfilter` | Profanity Filter is a simple tool for filtering out profanity words from a text. It returns the text with the profanity words replaced by placeholders. |
-| `sentimentanalysis` | Sentiment Analysis is a simple tool for analyzing the sentiment of a text. It returns the sentiment score and the sentiment label. |
-| `readabilityscore` | Readability Score is a simple tool for calculating the readability score of text. It returns the readability score based on various readability formulas. |
+| `contentfilter` | Content Filter checks URLs against a comprehensive blocklist of 200,000+ domains categorized as ads-malware, fake news, gambling, adult content, or social media. Returns the specific category for blocked domains, plus every category a domain appears in across a 1.7M-domain index. |
+| `profanityfilter` | Profanity Filter scans text for offensive language and masks detected swear words with a chosen replacement character. It returns the sanitized text and a boolean flag indicating if profanity was present. |
+| `sentimentanalysis` | Sentiment Analysis evaluates the emotional tone of any text string. It returns an AFINN valence score, a comparative word-normalized score, and a five-tier sentiment label from very negative to very positive. |
+| `readabilityscore` | Text Readability Score calculates the readability score and grade level of any text across standard formulas. It returns Flesch Reading Ease, Gunning Fog, Coleman-Liau, syllable and word counts, an average grade level, and a target audience label. |
 | `gibberishdetector` | Gibberish Detector analyzes text using bigram frequency and vowel ratios to identify nonsensical or randomly generated content. |
 
 ---
@@ -40,7 +38,7 @@ This action provides access to APIVerve's Content Quality APIs directly in your 
   with:
     api_key: ${{ secrets.APIVERVE_KEY }}
     api: contentfilter
-    params: '{&quot;text&quot;: &quot;Your content here&quot;}'
+    params: '{"text": "Your content here"}'
 ```
 
 ---
@@ -81,7 +79,6 @@ Go to your repository **Settings** → **Secrets and variables** → **Actions**
 | `output_file` | Path to save binary output (images, PDFs) | No | - |
 | `format` | Response format: `json`, `yaml`, or `xml` | No | `json` |
 | `fail_on_error` | Fail workflow if API returns error | No | `true` |
-
 *\*API key is required but can be provided via input OR `APIVERVE_API_KEY` / `APIVERVE_KEY` environment variable.*
 
 ## Outputs
@@ -92,7 +89,6 @@ Go to your repository **Settings** → **Secrets and variables** → **Actions**
 | `data` | The `data` field from response as JSON |
 | `status` | API status (`ok` or `error`) |
 | `file` | Path to downloaded file (if `output_file` was used) |
-
 ---
 
 ## Examples
@@ -108,7 +104,7 @@ Check text for profanity
   with:
     api_key: ${{ secrets.APIVERVE_KEY }}
     api: profanityfilter
-    params: '{&quot;text&quot;: &quot;Your content here&quot;}'
+    params: '{"text": "Your content here"}'
 
 - name: Use result
   run: echo "Result: ${{ steps.content-quality-0.outputs.data }}"
@@ -125,7 +121,7 @@ Analyze the sentiment of text
   with:
     api_key: ${{ secrets.APIVERVE_KEY }}
     api: sentimentanalysis
-    params: '{&quot;text&quot;: &quot;This is a great product!&quot;}'
+    params: '{"text": "This is a great product!"}'
 
 - name: Use result
   run: echo "Result: ${{ steps.content-quality-1.outputs.data }}"
@@ -142,7 +138,7 @@ Calculate readability metrics
   with:
     api_key: ${{ secrets.APIVERVE_KEY }}
     api: readabilityscore
-    params: '{&quot;text&quot;: &quot;Your content here&quot;}'
+    params: '{"text": "Your content here"}'
 
 - name: Use result
   run: echo "Result: ${{ steps.content-quality-2.outputs.data }}"
@@ -173,7 +169,7 @@ jobs:
         with:
           api_key: ${{ secrets.APIVERVE_KEY }}
           api: contentfilter
-          params: '{&quot;text&quot;: &quot;Your content here&quot;}'
+          params: '{"text": "Your content here"}'
 
       - name: Show result
         run: |
